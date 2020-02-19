@@ -8,34 +8,34 @@ using namespace std;
 
 #define MAXT 100
 
-//±êÊ¶·û½áµã
+//æ ‡è¯†ç¬¦ç»“ç‚¹
 struct IdentifierNode
 {
-    string content;   //ÄÚÈİ
-    string describe;  //ÃèÊö
-    int type;         //ÖÖ±ğÂë
-    string iden_type; //±êÊ¶·ûÀàĞÍ
-    int line;         //ËùÔÚĞĞÊı
+    string content;   //å†…å®¹
+    string describe;  //æè¿°
+    int type;         //ç§åˆ«ç 
+    string iden_type; //æ ‡è¯†ç¬¦ç±»å‹
+    int line;         //æ‰€åœ¨è¡Œæ•°
 
     IdentifierNode() {}
     IdentifierNode(string c, string d, int t, string i, int l) : content(c), describe(d), type(t), iden_type(i), line(l) {}
 };
 
-//±êÊ¶·û±í
+//æ ‡è¯†ç¬¦è¡¨
 map<string, IdentifierNode> iden_map;
 
-//ÖĞ¼äµã
+//ä¸­é—´ç‚¹
 struct mid_type
 {
-    NormalNode *node; //Èç¹ûÊÇ±êÊ¶·û»ò³£Á¿, ÔòÖ¸Ïò½áµã
-    int T_num;        //Èç¹ûÊÇÖĞ¼ä±äÁ¿, Ôò´ú±íÖĞ¼ä±äÁ¿ĞòºÅ
-    int isT;          //1: ÖĞ¼ä±äÁ¿; 0: µ¥´Ê½áµã(±êÊ¶·û/³£Á¿/ÔËËã·û); -1:error; 2: ¿Õ
+    NormalNode *node; //å¦‚æœæ˜¯æ ‡è¯†ç¬¦æˆ–å¸¸é‡, åˆ™æŒ‡å‘ç»“ç‚¹
+    int T_num;        //å¦‚æœæ˜¯ä¸­é—´å˜é‡, åˆ™ä»£è¡¨ä¸­é—´å˜é‡åºå·
+    int isT;          //1: ä¸­é—´å˜é‡; 0: å•è¯ç»“ç‚¹(æ ‡è¯†ç¬¦/å¸¸é‡/è¿ç®—ç¬¦); -1:error; 2: ç©º
 
 } error, null;
 
-bool T[MAXT]; //ÖĞ¼ä±äÁ¿Õ¼ÓÃ
+bool T[MAXT]; //ä¸­é—´å˜é‡å ç”¨
 
-//ËÄÔªÊ½ÖĞ¼ä´úÂëÖĞ¼ä´úÂë
+//å››å…ƒå¼ä¸­é—´ä»£ç ä¸­é—´ä»£ç 
 struct CodeNode
 {
     int line;
@@ -45,39 +45,39 @@ struct CodeNode
     CodeNode(int l, string o, string a1, string a2, string r) : line(l), opt(o), arg1(a1), arg2(a2), result(r) {}
 };
 
-//ËÄÔªÊ½´úÂëÁ´
+//å››å…ƒå¼ä»£ç é“¾
 list<CodeNode> code;
 
-string mid2string(mid_type m);     //mid_type½á¹¹ÌáÈ¡ÄÚÈİÌá¹©¸øgen()Éú³ÉËÄÔªÊ½ÖĞ¼ä´úÂë
-void createNewIden(NormalNode *p); //´´½¨ĞÂµÄ±êÊ¶·û½áµã
-void printIdentLink();             //Êä³ö±êÊ¶·û±í
-void outputIdenLink();             //µ¼³ö±êÊ¶·û±í
+string mid2string(mid_type m);     //mid_typeç»“æ„æå–å†…å®¹æä¾›ç»™gen()ç”Ÿæˆå››å…ƒå¼ä¸­é—´ä»£ç 
+void createNewIden(NormalNode *p); //åˆ›å»ºæ–°çš„æ ‡è¯†ç¬¦ç»“ç‚¹
+void printIdentLink();             //è¾“å‡ºæ ‡è¯†ç¬¦è¡¨
+void outputIdenLink();             //å¯¼å‡ºæ ‡è¯†ç¬¦è¡¨
 
-/*ÒÔÏÂÎª¸÷¸ö·ÇÖÕ½á·ûµÄµİ¹é×Ó³ÌĞò*/
-void program(NormalNode *&p);                              //<³ÌĞò>
-void main_fun(NormalNode *&p);                             //<mainº¯Êı>
-void return_type(NormalNode *&p);                          //<·µ»ØÀàĞÍ>
-void var_type(NormalNode *&p);                             //<±äÁ¿ÀàĞÍ>
-void struct_statement(NormalNode *&p);                     //<¸´ºÏÓï¾ä>
-void statements_list(NormalNode *&p);                      //<Óï¾äĞòÁĞ>
-void statement(NormalNode *&p);                            //<Óï¾ä>
-void statements_recursive(NormalNode *&p);                 //<Óï¾äµİ¹é>
-void define_statement(NormalNode *&p);                     //<¶¨ÒåÓï¾ä>
-mid_type assign_default(NormalNode *&p);                   //<¸³³õÖµ>
-void assign_statement(NormalNode *&p);                     //<¸³ÖµÓï¾ä>
-void condition_statement(NormalNode *&p);                  //<Ìõ¼şÓï¾ä>
-mid_type bool_expression(NormalNode *&p);                  //<²¼¶û±í´ïÊ½>
-mid_type expression(NormalNode *&p);                       //<±í´ïÊ½>
-mid_type items_recursive(NormalNode *&p, mid_type front);  //<Ïîµİ¹é>
-mid_type item(NormalNode *&p);                             //<Ïî>
-mid_type factor_recursive(NormalNode *&p, mid_type front); //<ÒòÊ½µİ¹é>
-mid_type factor(NormalNode *&p);                           //<ÒòÊ½>
-mid_type relation_operator(NormalNode *&p);                //<¹ØÏµÔËËã·û>
-string _identifier(NormalNode *&p);                        //<±êÊ¶·û>
-void unsigned_const(NormalNode *&p);                       //<ÎŞÕı¸ººÅ³£Á¿>
+/*ä»¥ä¸‹ä¸ºå„ä¸ªéç»ˆç»“ç¬¦çš„é€’å½’å­ç¨‹åº*/
+void program(NormalNode *&p);                              //<ç¨‹åº>
+void main_fun(NormalNode *&p);                             //<mainå‡½æ•°>
+void return_type(NormalNode *&p);                          //<è¿”å›ç±»å‹>
+void var_type(NormalNode *&p);                             //<å˜é‡ç±»å‹>
+void struct_statement(NormalNode *&p);                     //<å¤åˆè¯­å¥>
+void statements_list(NormalNode *&p);                      //<è¯­å¥åºåˆ—>
+void statement(NormalNode *&p);                            //<è¯­å¥>
+void statements_recursive(NormalNode *&p);                 //<è¯­å¥é€’å½’>
+void define_statement(NormalNode *&p);                     //<å®šä¹‰è¯­å¥>
+mid_type assign_default(NormalNode *&p);                   //<èµ‹åˆå€¼>
+void assign_statement(NormalNode *&p);                     //<èµ‹å€¼è¯­å¥>
+void condition_statement(NormalNode *&p);                  //<æ¡ä»¶è¯­å¥>
+mid_type bool_expression(NormalNode *&p);                  //<å¸ƒå°”è¡¨è¾¾å¼>
+mid_type expression(NormalNode *&p);                       //<è¡¨è¾¾å¼>
+mid_type items_recursive(NormalNode *&p, mid_type front);  //<é¡¹é€’å½’>
+mid_type item(NormalNode *&p);                             //<é¡¹>
+mid_type factor_recursive(NormalNode *&p, mid_type front); //<å› å¼é€’å½’>
+mid_type factor(NormalNode *&p);                           //<å› å¼>
+mid_type relation_operator(NormalNode *&p);                //<å…³ç³»è¿ç®—ç¬¦>
+string _identifier(NormalNode *&p);                        //<æ ‡è¯†ç¬¦>
+void unsigned_const(NormalNode *&p);                       //<æ— æ­£è´Ÿå·å¸¸é‡>
 
-mid_type newTemp();                                                 //»ñÈ¡ĞÂµÄÖĞ¼ä±äÁ¿Ti
-void emit(mid_type m);                                              //»ØÊÕÖĞ¼ä±äÁ¿Ti
-CodeNode &gen(string opt, string arg1, string arg2, string result); //Éú³ÉËÄÔªÊ½ÖĞ¼ä´úÂë
-void printCode();                                                   //Êä³öËÄÔªÊ½ÖĞ¼ä´úÂë
-void outputCode();                                                  //µ¼³öËÄÔªÊ½ÖĞ¼ä´úÂë
+mid_type newTemp();                                                 //è·å–æ–°çš„ä¸­é—´å˜é‡Ti
+void emit(mid_type m);                                              //å›æ”¶ä¸­é—´å˜é‡Ti
+CodeNode &gen(string opt, string arg1, string arg2, string result); //ç”Ÿæˆå››å…ƒå¼ä¸­é—´ä»£ç 
+void printCode();                                                   //è¾“å‡ºå››å…ƒå¼ä¸­é—´ä»£ç 
+void outputCode();                                                  //å¯¼å‡ºå››å…ƒå¼ä¸­é—´ä»£ç 

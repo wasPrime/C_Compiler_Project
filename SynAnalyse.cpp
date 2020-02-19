@@ -5,9 +5,9 @@
 
 using namespace std;
 
-int line_bak; //normal½áµãÃ¿´ÎÒÆ¶¯Ç°¶¼½øĞĞĞĞÊı±¸·İ, ×îºó1ĞĞ³ö´íÊ±Ö¸Ã÷¾ßÌåĞĞÊı
+int line_bak; //normalç»“ç‚¹æ¯æ¬¡ç§»åŠ¨å‰éƒ½è¿›è¡Œè¡Œæ•°å¤‡ä»½, æœ€å1è¡Œå‡ºé”™æ—¶æŒ‡æ˜å…·ä½“è¡Œæ•°
 
-//mid_type½á¹¹ÌáÈ¡ÄÚÈİÌá¹©¸øgen()Éú³ÉËÄÔªÊ½ÖĞ¼ä´úÂë
+//mid_typeç»“æ„æå–å†…å®¹æä¾›ç»™gen()ç”Ÿæˆå››å…ƒå¼ä¸­é—´ä»£ç 
 string mid2string(mid_type m)
 {
     if (m.isT == 1)
@@ -26,25 +26,25 @@ string mid2string(mid_type m)
     }
 }
 
-//´´½¨ĞÂµÄ±êÊ¶·û½áµã
+//åˆ›å»ºæ–°çš„æ ‡è¯†ç¬¦ç»“ç‚¹
 void createNewIden(NormalNode *p)
 {
     iden_map[p->content] = IdentifierNode(p->content, p->describe, p->type, "int", p->line);
 }
 
-//Êä³ö±êÊ¶·û±í
+//è¾“å‡ºæ ‡è¯†ç¬¦è¡¨
 void printIdentLink()
 {
-    cout << "****************************±êÊ¶·û±í*****************************" << endl
+    cout << "****************************æ ‡è¯†ç¬¦è¡¨*****************************" << endl
          << endl;
-    cout << setw(15) << "ÄÚÈİ"
-         << setw(15) << "ÃèÊö"
+    cout << setw(15) << "å†…å®¹"
+         << setw(15) << "æè¿°"
          << "\t"
-         << setw(3) << "ÖÖ±ğÂë"
+         << setw(3) << "ç§åˆ«ç "
          << "\t"
-         << setw(8) << "±êÊ¶·ûÀàĞÍ"
+         << setw(8) << "æ ‡è¯†ç¬¦ç±»å‹"
          << "\t"
-         << "ĞĞºÅ" << endl;
+         << "è¡Œå·" << endl;
 
     for (map<string, IdentifierNode>::iterator it = iden_map.begin(); it != iden_map.end(); it++)
     {
@@ -58,26 +58,26 @@ void printIdentLink()
          << endl;
 }
 
-//µ¼³ö±êÊ¶·û±í
+//å¯¼å‡ºæ ‡è¯†ç¬¦è¡¨
 void outputIdenLink()
 {
     ofstream fout("identifiers.txt");
     if (!fout)
     {
-        cout << "identifiers.txt´ò¿ªÊ§°Ü!" << endl;
+        cout << "identifiers.txtæ‰“å¼€å¤±è´¥!" << endl;
         return;
     }
-    fout << "*****************************±êÊ¶·û±í******************************" << endl
+    fout << "*****************************æ ‡è¯†ç¬¦è¡¨******************************" << endl
          << endl;
-    fout << "ÄÚÈİ"
+    fout << "å†…å®¹"
          << "\t"
-         << setw(10) << "ÃèÊö"
+         << setw(10) << "æè¿°"
          << "\t"
-         << setw(3) << "ÖÖ±ğÂë"
+         << setw(3) << "ç§åˆ«ç "
          << "\t"
-         << setw(8) << "±êÊ¶·ûÀàĞÍ"
+         << setw(8) << "æ ‡è¯†ç¬¦ç±»å‹"
          << "\t"
-         << "ĞĞºÅ" << endl;
+         << "è¡Œå·" << endl;
 
     for (map<string, IdentifierNode>::iterator p = iden_map.begin(); p != iden_map.end(); p++)
     {
@@ -89,17 +89,17 @@ void outputIdenLink()
     }
     fout << endl;
 
-    cout << "identifiers.txt¸üĞÂÍê³É!" << endl;
+    cout << "identifiers.txtæ›´æ–°å®Œæˆ!" << endl;
     fout.close();
 }
 
-/*ÒÔÏÂÎª¸÷¸ö·ÇÖÕ½á·ûµÄµİ¹é×Ó³ÌĞò*/
-//<³ÌĞò>
+/*ä»¥ä¸‹ä¸ºå„ä¸ªéç»ˆç»“ç¬¦çš„é€’å½’å­ç¨‹åº*/
+//<ç¨‹åº>
 void program(NormalNode *&p)
 {
     if (p)
     {
-        //·ûºÏfirst
+        //ç¬¦åˆfirst
         if (p->content == "int")
         {
             main_fun(p);
@@ -109,27 +109,27 @@ void program(NormalNode *&p)
                 {
                     line_bak = p->line;
                     p = p->next;
-                    cout << "Óï·¨·ÖÎöÍê³É!" << endl;
+                    cout << "è¯­æ³•åˆ†æå®Œæˆ!" << endl;
                     return;
                 }
             }
             else
             {
-                cout << "µÚ" << line_bak << "ĞĞ´íÎó: ³ÌĞòÓ¦ÒÔ$½áÊø" << endl;
+                cout << "ç¬¬" << line_bak << "è¡Œé”™è¯¯: ç¨‹åºåº”ä»¥$ç»“æŸ" << endl;
             }
         }
         else
         {
-            cout << "µÚ" << p->line << "ĞĞ´íÎó: ³ÌĞòÓ¦ÒÔint¿ªÊ¼" << endl;
+            cout << "ç¬¬" << p->line << "è¡Œé”™è¯¯: ç¨‹åºåº”ä»¥intå¼€å§‹" << endl;
         }
     }
     else
     {
-        cout << "³ÌĞò²»ÄÜÎª¿Õ" << endl;
+        cout << "ç¨‹åºä¸èƒ½ä¸ºç©º" << endl;
     }
 }
 
-//<mainº¯Êı>
+//<mainå‡½æ•°>
 void main_fun(NormalNode *&p)
 {
     if (p)
@@ -139,7 +139,7 @@ void main_fun(NormalNode *&p)
             return_type(p);
             if (p)
             {
-                //·ûºÏfirst
+                //ç¬¦åˆfirst
                 if (p->content == "main")
                 {
                 main_fun2:
@@ -162,58 +162,58 @@ void main_fun(NormalNode *&p)
                                 }
                                 else
                                 {
-                                    cout << "µÚ" << p->line << "ĞĞ´íÎó: " << p->content << "Ó¦Îª\")\"" << endl;
+                                    cout << "ç¬¬" << p->line << "è¡Œé”™è¯¯: " << p->content << "åº”ä¸º\")\"" << endl;
                                 }
                             }
                             else
                             {
-                                cout << "µÚ" << line_bak << "ĞĞ´íÎó: (ºóĞèÒª)Åä¶Ô" << endl;
+                                cout << "ç¬¬" << line_bak << "è¡Œé”™è¯¯: (åéœ€è¦)é…å¯¹" << endl;
                             }
                         }
                         else
                         {
-                            cout << "µÚ" << p->line << "ĞĞ´íÎó: mainº¯ÊıºóÓ¦Îª\"(\"" << endl;
+                            cout << "ç¬¬" << p->line << "è¡Œé”™è¯¯: mainå‡½æ•°ååº”ä¸º\"(\"" << endl;
                         }
                     }
                     else
                     {
-                        cout << "µÚ" << line_bak << "ĞĞ´íÎó: mainº¯ÊıºóĞèÒª(" << endl;
+                        cout << "ç¬¬" << line_bak << "è¡Œé”™è¯¯: mainå‡½æ•°åéœ€è¦(" << endl;
                     }
                 }
-                //³öÏÖÌø¹ımainº¯ÊıÃûµÄ´íÎó
+                //å‡ºç°è·³è¿‡mainå‡½æ•°åçš„é”™è¯¯
                 else if (p->content == "(")
                 {
-                    cout << "µÚ" << p->line << "ĞĞ´íÎó: mainº¯ÊıÓ¦ÓĞº¯ÊıÃûmain" << endl;
+                    cout << "ç¬¬" << p->line << "è¡Œé”™è¯¯: mainå‡½æ•°åº”æœ‰å‡½æ•°åmain" << endl;
                     goto main_fun1;
                 }
-                //³öÏÖmainº¯ÊıÃûĞ´´íµÄ´íÎó
+                //å‡ºç°mainå‡½æ•°åå†™é”™çš„é”™è¯¯
                 else if (p->next && p->next->content == "(")
                 {
-                    cout << "µÚ" << p->line << "ĞĞ´íÎó: mainº¯ÊıÓ¦ÒÔmainÎªº¯ÊıÃû" << endl;
+                    cout << "ç¬¬" << p->line << "è¡Œé”™è¯¯: mainå‡½æ•°åº”ä»¥mainä¸ºå‡½æ•°å" << endl;
                     goto main_fun2;
                 }
                 else
                 {
-                    cout << "µÚ" << p->line << "ĞĞ´íÎó: mainº¯ÊıÓ¦ÒÔmainÎªº¯ÊıÃû" << endl;
+                    cout << "ç¬¬" << p->line << "è¡Œé”™è¯¯: mainå‡½æ•°åº”ä»¥mainä¸ºå‡½æ•°å" << endl;
                 }
             }
             else
             {
-                cout << "µÚ" << line_bak << "ĞĞ´íÎó: mainº¯ÊıĞèÒªº¯ÊıÃû" << endl;
+                cout << "ç¬¬" << line_bak << "è¡Œé”™è¯¯: mainå‡½æ•°éœ€è¦å‡½æ•°å" << endl;
             }
         }
         else
         {
-            cout << "µÚ" << p->line << "ĞĞ´íÎó: mainº¯ÊıÓ¦ÒÔintÎª·µ»ØÀàĞÍ" << endl;
+            cout << "ç¬¬" << p->line << "è¡Œé”™è¯¯: mainå‡½æ•°åº”ä»¥intä¸ºè¿”å›ç±»å‹" << endl;
         }
     }
     else
     {
-        cout << "µÚ" << line_bak << "ĞĞ´íÎó: mainº¯ÊıĞèÒª·µ»ØÀàĞÍ" << endl;
+        cout << "ç¬¬" << line_bak << "è¡Œé”™è¯¯: mainå‡½æ•°éœ€è¦è¿”å›ç±»å‹" << endl;
     }
 }
 
-//<·µ»ØÀàĞÍ>
+//<è¿”å›ç±»å‹>
 void return_type(NormalNode *&p)
 {
     if (p)
@@ -224,16 +224,16 @@ void return_type(NormalNode *&p)
         }
         else
         {
-            cout << "µÚ" << p->line << "ĞĞ´íÎó: ·µ»ØÀàĞÍÓ¦Îªint" << endl;
+            cout << "ç¬¬" << p->line << "è¡Œé”™è¯¯: è¿”å›ç±»å‹åº”ä¸ºint" << endl;
         }
     }
     else
     {
-        cout << "µÚ" << line_bak << "ĞĞ´íÎó: º¯ÊıĞèÒª·µ»ØÀàĞÍ" << endl;
+        cout << "ç¬¬" << line_bak << "è¡Œé”™è¯¯: å‡½æ•°éœ€è¦è¿”å›ç±»å‹" << endl;
     }
 }
 
-//<±äÁ¿ÀàĞÍ>
+//<å˜é‡ç±»å‹>
 void var_type(NormalNode *&p)
 {
     if (p)
@@ -246,16 +246,16 @@ void var_type(NormalNode *&p)
         }
         else
         {
-            cout << "µÚ" << p->line << "ĞĞ´íÎó: ±äÁ¿ÀàĞÍÓ¦Îªint" << endl;
+            cout << "ç¬¬" << p->line << "è¡Œé”™è¯¯: å˜é‡ç±»å‹åº”ä¸ºint" << endl;
         }
     }
     else
     {
-        cout << "µÚ" << line_bak << "ĞĞ´íÎó: ´ËÊ±ĞèÒª±äÁ¿ÀàĞÍ" << endl;
+        cout << "ç¬¬" << line_bak << "è¡Œé”™è¯¯: æ­¤æ—¶éœ€è¦å˜é‡ç±»å‹" << endl;
     }
 }
 
-//<¸´ºÏÓï¾ä>
+//<å¤åˆè¯­å¥>
 void struct_statement(NormalNode *&p)
 {
     if (p)
@@ -275,26 +275,26 @@ void struct_statement(NormalNode *&p)
                 }
                 else
                 {
-                    cout << "µÚ" << p->line << "ĞĞ´íÎó: " << p->content << "Ó¦Îª\"}\"" << endl;
+                    cout << "ç¬¬" << p->line << "è¡Œé”™è¯¯: " << p->content << "åº”ä¸º\"}\"" << endl;
                 }
             }
             else
             {
-                cout << "µÚ" << line_bak << "ĞĞ´íÎó: ´ËÊ±ĞèÒª{" << endl;
+                cout << "ç¬¬" << line_bak << "è¡Œé”™è¯¯: æ­¤æ—¶éœ€è¦{" << endl;
             }
         }
         else
         {
-            cout << "µÚ" << p->line << "ĞĞ´íÎó: ¸´ºÏÓï¾äÓ¦ÒÔ{¿ªÊ¼" << endl;
+            cout << "ç¬¬" << p->line << "è¡Œé”™è¯¯: å¤åˆè¯­å¥åº”ä»¥{å¼€å§‹" << endl;
         }
     }
     else
     {
-        cout << "µÚ" << line_bak << "ĞĞ´íÎó: ´ËÊ±ĞèÒª{" << endl;
+        cout << "ç¬¬" << line_bak << "è¡Œé”™è¯¯: æ­¤æ—¶éœ€è¦{" << endl;
     }
 }
 
-//<Óï¾äĞòÁĞ>
+//<è¯­å¥åºåˆ—>
 void statements_list(NormalNode *&p)
 {
     if (p)
@@ -311,16 +311,16 @@ void statements_list(NormalNode *&p)
         else
         {
             cout << p->content << endl;
-            cout << "µÚ" << p->line << "ĞĞ´íÎó: Óï¾äÍ·²»ºÏ·¨" << endl;
+            cout << "ç¬¬" << p->line << "è¡Œé”™è¯¯: è¯­å¥å¤´ä¸åˆæ³•" << endl;
         }
     }
     else
     {
-        cout << "µÚ" << line_bak << "ĞĞ´íÎó: ´ËÊ±ĞèÒªÓï¾äÍ·" << endl;
+        cout << "ç¬¬" << line_bak << "è¡Œé”™è¯¯: æ­¤æ—¶éœ€è¦è¯­å¥å¤´" << endl;
     }
 }
 
-//<Óï¾ä>
+//<è¯­å¥>
 void statement(NormalNode *&p)
 {
     if (p)
@@ -356,26 +356,26 @@ void statement(NormalNode *&p)
                 }
                 else
                 {
-                    cout << "µÚ" << p->line << "ĞĞ´íÎó: " << p->content << "Ó¦Îª\";\"" << endl;
+                    cout << "ç¬¬" << p->line << "è¡Œé”™è¯¯: " << p->content << "åº”ä¸º\";\"" << endl;
                 }
             }
             else
             {
-                cout << "µÚ" << line_bak << "ĞĞ´íÎó: ´ËÊ±Ó¦ÓĞ\";\"" << endl;
+                cout << "ç¬¬" << line_bak << "è¡Œé”™è¯¯: æ­¤æ—¶åº”æœ‰\";\"" << endl;
             }
         }
         else
         {
-            cout << "µÚ" << p->line << "ĞĞ´íÎó: Ã»ÓĞºÏ·¨Óï¾äÍ·" << endl;
+            cout << "ç¬¬" << p->line << "è¡Œé”™è¯¯: æ²¡æœ‰åˆæ³•è¯­å¥å¤´" << endl;
         }
     }
     else
     {
-        cout << "µÚ" << line_bak << "ĞĞ´íÎó: Óï¾äĞòÁĞÀïÖÁÉÙÓ¦ÓĞ1ÌõÓï¾ä" << endl;
+        cout << "ç¬¬" << line_bak << "è¡Œé”™è¯¯: è¯­å¥åºåˆ—é‡Œè‡³å°‘åº”æœ‰1æ¡è¯­å¥" << endl;
     }
 }
 
-//<Óï¾äµİ¹é>
+//<è¯­å¥é€’å½’>
 void statements_recursive(NormalNode *&p)
 {
     if (p)
@@ -391,16 +391,16 @@ void statements_recursive(NormalNode *&p)
         }
         else
         {
-            cout << "µÚ" << p->line << "ĞĞ´íÎó: " << p->content << "²»ºÏÀí, ´Ë´¦Ó¦¸ÃÊÇÓï¾äÍ·»ò}" << endl;
+            cout << "ç¬¬" << p->line << "è¡Œé”™è¯¯: " << p->content << "ä¸åˆç†, æ­¤å¤„åº”è¯¥æ˜¯è¯­å¥å¤´æˆ–}" << endl;
         }
     }
     else
     {
-        cout << "µÚ" << line_bak << "ĞĞ´íÎó: ³ÌĞò²»ÍêÕû" << endl;
+        cout << "ç¬¬" << line_bak << "è¡Œé”™è¯¯: ç¨‹åºä¸å®Œæ•´" << endl;
     }
 }
 
-//<¶¨ÒåÓï¾ä>
+//<å®šä¹‰è¯­å¥>
 void define_statement(NormalNode *&p)
 {
     if (p)
@@ -409,26 +409,26 @@ void define_statement(NormalNode *&p)
         {
             var_type(p);
 
-            NormalNode *bak = p; //±¸·İ±êÊ¶·ûÎ»ÖÃ
+            NormalNode *bak = p; //å¤‡ä»½æ ‡è¯†ç¬¦ä½ç½®
             _identifier(p);
 
             if (bak)
-            { //ÉùÃ÷, ±êÊ¶·ûÀàĞÍ¸³Öµ
+            { //å£°æ˜, æ ‡è¯†ç¬¦ç±»å‹èµ‹å€¼
                 if (iden_map.find(bak->content) == iden_map.end())
                 {
                     createNewIden(bak);
                     bak->iden_type = "int";
-                    //ÉùÃ÷±êÊ¶·û    ËÄÔªÊ½
+                    //å£°æ˜æ ‡è¯†ç¬¦    å››å…ƒå¼
                     gen("assign", "int", "_", bak->content);
                 }
                 else
                 {
-                    cout << "µÚ" << p->line << "ĞĞ´íÎó: ±êÊ¶·û" << p->content << "ÒÑÉùÃ÷" << endl;
+                    cout << "ç¬¬" << p->line << "è¡Œé”™è¯¯: æ ‡è¯†ç¬¦" << p->content << "å·²å£°æ˜" << endl;
                 }
             }
             else
             {
-                cout << "µÚ" << line_bak << "ĞĞ´íÎó: ±êÊ¶·û²»´æÔÚ, ÎŞ·¨ÉùÃ÷" << endl;
+                cout << "ç¬¬" << line_bak << "è¡Œé”™è¯¯: æ ‡è¯†ç¬¦ä¸å­˜åœ¨, æ— æ³•å£°æ˜" << endl;
             }
 
             mid_type _it;
@@ -442,11 +442,11 @@ void define_statement(NormalNode *&p)
             {
                 if (p->content == ";")
                 {
-                    if (_e.isT != 2) //¼ÙÈç·µ»ØÖĞ¼äÌå²»Îª¿Õ
+                    if (_e.isT != 2) //å‡å¦‚è¿”å›ä¸­é—´ä½“ä¸ä¸ºç©º
                     {
                         gen("=", mid2string(_e), "_", mid2string(_it));
 
-                        //»ØÊÕ_e
+                        //å›æ”¶_e
                         emit(_e);
                     }
                     line_bak = p->line;
@@ -455,26 +455,26 @@ void define_statement(NormalNode *&p)
                 }
                 else
                 {
-                    cout << "µÚ" << p->line << "ĞĞ´íÎó: " << p->content << "Ó¦Îª\";\"" << endl;
+                    cout << "ç¬¬" << p->line << "è¡Œé”™è¯¯: " << p->content << "åº”ä¸º\";\"" << endl;
                 }
             }
             else
             {
-                cout << "µÚ" << line_bak << "ĞĞ´íÎó: ´ËÊ±Ó¦ÓĞ\";\"" << endl;
+                cout << "ç¬¬" << line_bak << "è¡Œé”™è¯¯: æ­¤æ—¶åº”æœ‰\";\"" << endl;
             }
         }
         else
         {
-            cout << "µÚ" << p->line << "ĞĞ´íÎó: Ã»ÓĞºÏ·¨Óï¾äÍ·" << endl;
+            cout << "ç¬¬" << p->line << "è¡Œé”™è¯¯: æ²¡æœ‰åˆæ³•è¯­å¥å¤´" << endl;
         }
     }
     else
     {
-        cout << "µÚ" << line_bak << "ĞĞ´íÎó: ¶¨ÒåÓï¾äÓ¦ÒÔ±äÁ¿ÀàĞÍ¿ªÍ·" << endl;
+        cout << "ç¬¬" << line_bak << "è¡Œé”™è¯¯: å®šä¹‰è¯­å¥åº”ä»¥å˜é‡ç±»å‹å¼€å¤´" << endl;
     }
 }
 
-//<¸³³õÖµ>
+//<èµ‹åˆå€¼>
 mid_type assign_default(NormalNode *&p)
 {
     if (p)
@@ -496,37 +496,37 @@ mid_type assign_default(NormalNode *&p)
         }
         else
         {
-            cout << "µÚ" << p->line << "ĞĞ´íÎó: ´ËÊ±ĞèÒª¸ø±êÊ¶·û¸³³õÖµ»òÒÔ;½áÎ²" << endl;
+            cout << "ç¬¬" << p->line << "è¡Œé”™è¯¯: æ­¤æ—¶éœ€è¦ç»™æ ‡è¯†ç¬¦èµ‹åˆå€¼æˆ–ä»¥;ç»“å°¾" << endl;
         }
     }
     else
     {
-        cout << "µÚ" << line_bak << "ĞĞ´íÎó: ³ÌĞò²»ÍêÕû" << endl;
+        cout << "ç¬¬" << line_bak << "è¡Œé”™è¯¯: ç¨‹åºä¸å®Œæ•´" << endl;
     }
     return error;
 }
 
-//<¸³ÖµÓï¾ä>
+//<èµ‹å€¼è¯­å¥>
 void assign_statement(NormalNode *&p)
 {
     if (p)
     {
         if (p->describe == IDENTIFIER_DESC)
         {
-            //ÅĞ¶Ï±êÊ¶·ûÊÇ·ñÒÑÉùÃ÷
+            //åˆ¤æ–­æ ‡è¯†ç¬¦æ˜¯å¦å·²å£°æ˜
             if (iden_map.find(p->content) == iden_map.end())
             {
-                cout << "µÚ" << p->line << "ĞĞ´íÎó: ±êÊ¶·û" << p->content << "ÉĞÎ´ÉùÃ÷" << endl;
+                cout << "ç¬¬" << p->line << "è¡Œé”™è¯¯: æ ‡è¯†ç¬¦" << p->content << "å°šæœªå£°æ˜" << endl;
             }
 
-            string _i = _identifier(p); //±êÊ¶·û²ÎÊı
+            string _i = _identifier(p); //æ ‡è¯†ç¬¦å‚æ•°
             if (p)
             {
                 if (p->content == "=")
                 {
                     line_bak = p->line;
                     p = p->next;
-                    mid_type _e = expression(p); //±í´ïÊ½²ÎÊı
+                    mid_type _e = expression(p); //è¡¨è¾¾å¼å‚æ•°
                     if (_e.isT == -1)
                         return;
                     if (p)
@@ -538,43 +538,43 @@ void assign_statement(NormalNode *&p)
 
                             gen("=", mid2string(_e), "_", _i);
 
-                            //»ØÊÕ_e
+                            //å›æ”¶_e
                             emit(_e);
 
                             return;
                         }
                         else
                         {
-                            cout << "µÚ" << p->line << "ĞĞ´íÎó: " << p->content << "Ó¦Îª\";\"" << endl;
+                            cout << "ç¬¬" << p->line << "è¡Œé”™è¯¯: " << p->content << "åº”ä¸º\";\"" << endl;
                         }
                     }
                     else
                     {
-                        cout << "µÚ" << line_bak << "ĞĞ´íÎó: ´ËÊ±Ó¦ÓĞ\";\"" << endl;
+                        cout << "ç¬¬" << line_bak << "è¡Œé”™è¯¯: æ­¤æ—¶åº”æœ‰\";\"" << endl;
                     }
                 }
                 else
                 {
-                    cout << "µÚ" << p->line << "ĞĞ´íÎó: " << p->content << "Ó¦Îª\"=\"" << endl;
+                    cout << "ç¬¬" << p->line << "è¡Œé”™è¯¯: " << p->content << "åº”ä¸º\"=\"" << endl;
                 }
             }
             else
             {
-                cout << "µÚ" << line_bak << "ĞĞ´íÎó: ´ËÊ±Ó¦ÓĞ\"+\"ºÅ" << endl;
+                cout << "ç¬¬" << line_bak << "è¡Œé”™è¯¯: æ­¤æ—¶åº”æœ‰\"+\"å·" << endl;
             }
         }
         else
         {
-            cout << "µÚ" << p->line << "ĞĞ´íÎó: ´ËÊ±Ó¦ÓĞ±êÊ¶·û" << endl;
+            cout << "ç¬¬" << p->line << "è¡Œé”™è¯¯: æ­¤æ—¶åº”æœ‰æ ‡è¯†ç¬¦" << endl;
         }
     }
     else
     {
-        cout << "µÚ" << line_bak << "ĞĞ´íÎó: ³ÌĞò²»ÍêÕû" << endl;
+        cout << "ç¬¬" << line_bak << "è¡Œé”™è¯¯: ç¨‹åºä¸å®Œæ•´" << endl;
     }
 }
 
-//<Ìõ¼şÓï¾ä>
+//<æ¡ä»¶è¯­å¥>
 void condition_statement(NormalNode *&p)
 {
     if (p)
@@ -601,7 +601,7 @@ void condition_statement(NormalNode *&p)
 
                             CodeNode &else_from = gen("jne", mid2string(_b_e), "_", "");
 
-                            //»ØÊÕ_b_e
+                            //å›æ”¶_b_e
                             emit(_b_e);
 
                             struct_statement(p);
@@ -610,7 +610,7 @@ void condition_statement(NormalNode *&p)
                             {
                                 if (p->content == "else")
                                 {
-                                    //»ØÌîelse_from
+                                    //å›å¡«else_from
                                     stringstream ss;
                                     ss << "(" << code.back().line + 1 << ")";
                                     else_from.result = ss.str();
@@ -619,53 +619,53 @@ void condition_statement(NormalNode *&p)
                                     p = p->next;
                                     struct_statement(p);
 
-                                    //»ØÌîif_end_to
+                                    //å›å¡«if_end_to
                                     ss.str("");
                                     ss << "(" << code.back().line + 1 << ")";
                                     if_end_to.result = ss.str();
                                 }
                                 else
                                 {
-                                    cout << "µÚ" << p->line << "ĞĞ´íÎó: " << p->content << "Ó¦Îªelse" << endl;
+                                    cout << "ç¬¬" << p->line << "è¡Œé”™è¯¯: " << p->content << "åº”ä¸ºelse" << endl;
                                 }
                             }
                             else
                             {
-                                cout << "µÚ" << line_bak << "ĞĞ´íÎó: ´ËÊ±Ó¦ÓĞelse" << endl;
+                                cout << "ç¬¬" << line_bak << "è¡Œé”™è¯¯: æ­¤æ—¶åº”æœ‰else" << endl;
                             }
                         }
                         else
                         {
-                            cout << "µÚ" << p->line << "ĞĞ´íÎó: " << p->content << "Ó¦Îª\")\"" << endl;
+                            cout << "ç¬¬" << p->line << "è¡Œé”™è¯¯: " << p->content << "åº”ä¸º\")\"" << endl;
                         }
                     }
                     else
                     {
-                        cout << "µÚ" << line_bak << "ĞĞ´íÎó: ´ËÊ±Ó¦ÓĞ)" << endl;
+                        cout << "ç¬¬" << line_bak << "è¡Œé”™è¯¯: æ­¤æ—¶åº”æœ‰)" << endl;
                     }
                 }
                 else
                 {
-                    cout << "µÚ" << p->line << "ĞĞ´íÎó: " << p->content << "Ó¦Îª\"(\"" << endl;
+                    cout << "ç¬¬" << p->line << "è¡Œé”™è¯¯: " << p->content << "åº”ä¸º\"(\"" << endl;
                 }
             }
             else
             {
-                cout << "µÚ" << line_bak << "ĞĞ´íÎó: ´ËÊ±Ó¦ÓĞ(" << endl;
+                cout << "ç¬¬" << line_bak << "è¡Œé”™è¯¯: æ­¤æ—¶åº”æœ‰(" << endl;
             }
         }
         else
         {
-            cout << "µÚ" << p->line << "ĞĞ´íÎó: " << p->content << "Ó¦Îªif" << endl;
+            cout << "ç¬¬" << p->line << "è¡Œé”™è¯¯: " << p->content << "åº”ä¸ºif" << endl;
         }
     }
     else
     {
-        cout << "µÚ" << line_bak << "ĞĞ´íÎó: ´ËÊ±Ó¦ÓĞif" << endl;
+        cout << "ç¬¬" << line_bak << "è¡Œé”™è¯¯: æ­¤æ—¶åº”æœ‰if" << endl;
     }
 }
 
-//<²¼¶û±í´ïÊ½>
+//<å¸ƒå°”è¡¨è¾¾å¼>
 mid_type bool_expression(NormalNode *&p)
 {
     if (p)
@@ -684,17 +684,17 @@ mid_type bool_expression(NormalNode *&p)
         }
         else
         {
-            cout << "µÚ" << p->line << "ĞĞ´íÎó: " << p->content << "Ó¦Îª±í´ïÊ½" << endl;
+            cout << "ç¬¬" << p->line << "è¡Œé”™è¯¯: " << p->content << "åº”ä¸ºè¡¨è¾¾å¼" << endl;
         }
     }
     else
     {
-        cout << "µÚ" << line_bak << "ĞĞ´íÎó: ´ËÊ±Ó¦ÓĞ±í´ïÊ½" << endl;
+        cout << "ç¬¬" << line_bak << "è¡Œé”™è¯¯: æ­¤æ—¶åº”æœ‰è¡¨è¾¾å¼" << endl;
     }
     return error;
 }
 
-//<±í´ïÊ½>
+//<è¡¨è¾¾å¼>
 mid_type expression(NormalNode *&p)
 {
     if (p)
@@ -709,17 +709,17 @@ mid_type expression(NormalNode *&p)
         }
         else
         {
-            cout << "µÚ" << p->line << "ĞĞ´íÎó: " << p->content << "Ó¦ÎªÏî" << endl;
+            cout << "ç¬¬" << p->line << "è¡Œé”™è¯¯: " << p->content << "åº”ä¸ºé¡¹" << endl;
         }
     }
     else
     {
-        cout << "µÚ" << line_bak << "ĞĞ´íÎó: ´ËÊ±Ó¦ÓĞÏî" << endl;
+        cout << "ç¬¬" << line_bak << "è¡Œé”™è¯¯: æ­¤æ—¶åº”æœ‰é¡¹" << endl;
     }
     return error;
 }
 
-//<Ïîµİ¹é>
+//<é¡¹é€’å½’>
 mid_type items_recursive(NormalNode *&p, mid_type front)
 {
     if (p)
@@ -735,10 +735,10 @@ mid_type items_recursive(NormalNode *&p, mid_type front)
                 return error;
 
             mid_type res = newTemp();
-            //Éú³ÉËÄÔªÊ½
+            //ç”Ÿæˆå››å…ƒå¼
             gen(op_bak, mid2string(front), mid2string(back), mid2string(res));
 
-            //»ØÊÕfront¡¢back
+            //å›æ”¶frontã€back
             emit(front);
             emit(back);
 
@@ -750,17 +750,17 @@ mid_type items_recursive(NormalNode *&p, mid_type front)
         }
         else
         {
-            cout << "µÚ" << p->line << "ĞĞ´íÎó: ´ËÊ±Ó¦ÓĞ¸ü¶àµÄÏî»ò½áÊø" << endl;
+            cout << "ç¬¬" << p->line << "è¡Œé”™è¯¯: æ­¤æ—¶åº”æœ‰æ›´å¤šçš„é¡¹æˆ–ç»“æŸ" << endl;
         }
     }
     else
     {
-        cout << "µÚ" << line_bak << "ĞĞ´íÎó: Ïî²»ÍêÕû" << endl;
+        cout << "ç¬¬" << line_bak << "è¡Œé”™è¯¯: é¡¹ä¸å®Œæ•´" << endl;
     }
     return error;
 }
 
-//<Ïî>
+//<é¡¹>
 mid_type item(NormalNode *&p)
 {
     if (p)
@@ -775,17 +775,17 @@ mid_type item(NormalNode *&p)
         }
         else
         {
-            cout << "µÚ" << p->line << "ĞĞ´íÎó: " << p->content << "Ó¦ÎªÒòÊ½" << endl;
+            cout << "ç¬¬" << p->line << "è¡Œé”™è¯¯: " << p->content << "åº”ä¸ºå› å¼" << endl;
         }
     }
     else
     {
-        cout << "µÚ" << line_bak << "ĞĞ´íÎó: ´ËÊ±Ó¦ÓĞÒòÊ½" << endl;
+        cout << "ç¬¬" << line_bak << "è¡Œé”™è¯¯: æ­¤æ—¶åº”æœ‰å› å¼" << endl;
     }
     return error;
 }
 
-//<ÒòÊ½µİ¹é>
+//<å› å¼é€’å½’>
 mid_type factor_recursive(NormalNode *&p, mid_type front)
 {
     if (p)
@@ -802,7 +802,7 @@ mid_type factor_recursive(NormalNode *&p, mid_type front)
             mid_type res = newTemp();
             gen(op_bak, mid2string(front), mid2string(back), mid2string(res));
 
-            //»ØÊÕfront¡¢back
+            //å›æ”¶frontã€back
             emit(front);
             emit(back);
 
@@ -814,17 +814,17 @@ mid_type factor_recursive(NormalNode *&p, mid_type front)
         }
         else
         {
-            cout << "µÚ" << p->line << "ĞĞ´íÎó: ´ËÊ±Ó¦ÓĞ¸ü¶àµÄÒòÊ½»ò½áÊø¶àÏîÊ½(»òĞíÊÇÉÙÁË;)" << endl;
+            cout << "ç¬¬" << p->line << "è¡Œé”™è¯¯: æ­¤æ—¶åº”æœ‰æ›´å¤šçš„å› å¼æˆ–ç»“æŸå¤šé¡¹å¼(æˆ–è®¸æ˜¯å°‘äº†;)" << endl;
         }
     }
     else
     {
-        cout << "µÚ" << line_bak << "ĞĞ´íÎó: ÒòÊ½²»ÍêÕû" << endl;
+        cout << "ç¬¬" << line_bak << "è¡Œé”™è¯¯: å› å¼ä¸å®Œæ•´" << endl;
     }
     return error;
 }
 
-//<ÒòÊ½>
+//<å› å¼>
 mid_type factor(NormalNode *&p)
 {
     if (p)
@@ -833,10 +833,10 @@ mid_type factor(NormalNode *&p)
         {
             NormalNode *p_bak = p;
 
-            //ÅĞ¶Ï±êÊ¶·ûÊÇ·ñÒÑÉùÃ÷
+            //åˆ¤æ–­æ ‡è¯†ç¬¦æ˜¯å¦å·²å£°æ˜
             if (iden_map.find(p->content) == iden_map.end())
             {
-                cout << "µÚ" << p->line << "ĞĞ´íÎó: ±êÊ¶·û" << p->content << "ÉĞÎ´ÉùÃ÷" << endl;
+                cout << "ç¬¬" << p->line << "è¡Œé”™è¯¯: æ ‡è¯†ç¬¦" << p->content << "å°šæœªå£°æ˜" << endl;
             }
 
             _identifier(p);
@@ -872,27 +872,27 @@ mid_type factor(NormalNode *&p)
                 }
                 else
                 {
-                    cout << "µÚ" << p->line << "ĞĞ´íÎó: " << p->content << "Ó¦Îª\")\"" << endl;
+                    cout << "ç¬¬" << p->line << "è¡Œé”™è¯¯: " << p->content << "åº”ä¸º\")\"" << endl;
                 }
             }
             else
             {
-                cout << "µÚ" << line_bak << "ĞĞ´íÎó: ´ËÊ±Ó¦ÓĞ)" << endl;
+                cout << "ç¬¬" << line_bak << "è¡Œé”™è¯¯: æ­¤æ—¶åº”æœ‰)" << endl;
             }
         }
         else
         {
-            cout << "µÚ" << p->line << "ĞĞ´íÎó: " << p->content << "×÷ÎªÒòÊ½²»ºÏ·¨" << endl;
+            cout << "ç¬¬" << p->line << "è¡Œé”™è¯¯: " << p->content << "ä½œä¸ºå› å¼ä¸åˆæ³•" << endl;
         }
     }
     else
     {
-        cout << "µÚ" << line_bak << "ĞĞ´íÎó: ÒòÊ½²»ÍêÕû" << endl;
+        cout << "ç¬¬" << line_bak << "è¡Œé”™è¯¯: å› å¼ä¸å®Œæ•´" << endl;
     }
     return error;
 }
 
-//<¹ØÏµÔËËã·û>
+//<å…³ç³»è¿ç®—ç¬¦>
 mid_type relation_operator(NormalNode *&p)
 {
     if (p)
@@ -910,17 +910,17 @@ mid_type relation_operator(NormalNode *&p)
         }
         else
         {
-            cout << "µÚ" << p->line << "ĞĞ´íÎó: " << p->content << "Ó¦Îª¹ØÏµÔËËã·û" << endl;
+            cout << "ç¬¬" << p->line << "è¡Œé”™è¯¯: " << p->content << "åº”ä¸ºå…³ç³»è¿ç®—ç¬¦" << endl;
         }
     }
     else
     {
-        cout << "µÚ" << line_bak << "ĞĞ´íÎó: ´ËÊ±Ó¦ÓĞ¹ØÏµÔËËã·û" << endl;
+        cout << "ç¬¬" << line_bak << "è¡Œé”™è¯¯: æ­¤æ—¶åº”æœ‰å…³ç³»è¿ç®—ç¬¦" << endl;
     }
     return error;
 }
 
-//<±êÊ¶·û>
+//<æ ‡è¯†ç¬¦>
 string _identifier(NormalNode *&p)
 {
     if (p)
@@ -934,17 +934,17 @@ string _identifier(NormalNode *&p)
         }
         else
         {
-            cout << "µÚ" << p->line << "ĞĞ´íÎó: " << p->content << "Ó¦Îª±êÊ¶·û" << endl;
+            cout << "ç¬¬" << p->line << "è¡Œé”™è¯¯: " << p->content << "åº”ä¸ºæ ‡è¯†ç¬¦" << endl;
         }
     }
     else
     {
-        cout << "µÚ" << line_bak << "ĞĞ´íÎó: ´ËÊ±Ó¦ÓĞ±êÊ¶·û" << endl;
+        cout << "ç¬¬" << line_bak << "è¡Œé”™è¯¯: æ­¤æ—¶åº”æœ‰æ ‡è¯†ç¬¦" << endl;
     }
     return _NULL;
 }
 
-//<ÎŞÕı¸ººÅ³£Á¿>
+//<æ— æ­£è´Ÿå·å¸¸é‡>
 void unsigned_const(NormalNode *&p)
 {
     if (p)
@@ -957,16 +957,16 @@ void unsigned_const(NormalNode *&p)
         }
         else
         {
-            cout << "µÚ" << p->line << "ĞĞ´íÎó: " << p->content << "Ó¦Îª³£Á¿" << endl;
+            cout << "ç¬¬" << p->line << "è¡Œé”™è¯¯: " << p->content << "åº”ä¸ºå¸¸é‡" << endl;
         }
     }
     else
     {
-        cout << "µÚ" << line_bak << "ĞĞ´íÎó: ´ËÊ±Ó¦ÓĞ³£Á¿" << endl;
+        cout << "ç¬¬" << line_bak << "è¡Œé”™è¯¯: æ­¤æ—¶åº”æœ‰å¸¸é‡" << endl;
     }
 }
 
-//»ñÈ¡ĞÂµÄÖĞ¼ä±äÁ¿Ti
+//è·å–æ–°çš„ä¸­é—´å˜é‡Ti
 mid_type newTemp()
 {
     for (int i = 0; i < MAXT; i++)
@@ -984,17 +984,17 @@ mid_type newTemp()
     return error;
 }
 
-//»ØÊÕÖĞ¼ä±äÁ¿Ti
+//å›æ”¶ä¸­é—´å˜é‡Ti
 void emit(mid_type m)
 {
-    //Èç¹ûÊÇÖĞ¼ä±äÁ¿
+    //å¦‚æœæ˜¯ä¸­é—´å˜é‡
     if (m.isT == 1)
     {
         T[m.T_num] = false;
     }
 }
 
-//Éú³ÉËÄÔªÊ½ÖĞ¼ä´úÂë
+//ç”Ÿæˆå››å…ƒå¼ä¸­é—´ä»£ç 
 CodeNode &gen(string opt, string arg1, string arg2, string result)
 {
     static int static_line = 0;
@@ -1002,10 +1002,10 @@ CodeNode &gen(string opt, string arg1, string arg2, string result)
     return code.back();
 }
 
-//Êä³öËÄÔªÊ½ÖĞ¼ä´úÂë
+//è¾“å‡ºå››å…ƒå¼ä¸­é—´ä»£ç 
 void printCode()
 {
-    cout << "ÖĞ¼ä´úÂëÈçÏÂ: " << endl;
+    cout << "ä¸­é—´ä»£ç å¦‚ä¸‹: " << endl;
     for (list<CodeNode>::iterator it = code.begin(); it != code.end(); ++it)
     {
         cout << "(" << it->line << ")"
@@ -1013,13 +1013,13 @@ void printCode()
     }
 }
 
-//µ¼³öËÄÔªÊ½ÖĞ¼ä´úÂë
+//å¯¼å‡ºå››å…ƒå¼ä¸­é—´ä»£ç 
 void outputCode()
 {
     ofstream fout("midCode.txt");
     if (!fout)
     {
-        cout << "midCode.txt´ò¿ªÊ§°Ü!" << endl;
+        cout << "midCode.txtæ‰“å¼€å¤±è´¥!" << endl;
         return;
     }
     for (list<CodeNode>::iterator it = code.begin(); it != code.end(); ++it)

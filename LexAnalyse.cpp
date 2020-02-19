@@ -8,7 +8,7 @@
 
 using namespace std;
 
-//≥ı ºªØ±£¡Ù◊÷◊÷µ‰
+//ÂàùÂßãÂåñ‰øùÁïôÂ≠óÂ≠óÂÖ∏
 void initKeyMap()
 {
     keyMap.clear();
@@ -19,7 +19,7 @@ void initKeyMap()
     keyMap["else"] = ELSE;
 }
 
-//≥ı ºªØ‘ÀÀ„∑˚◊÷µ‰
+//ÂàùÂßãÂåñËøêÁÆóÁ¨¶Â≠óÂÖ∏
 void initOperMap()
 {
     operMap.clear();
@@ -36,7 +36,7 @@ void initOperMap()
     operMap["="] = ASSIGN;
 }
 
-//≥ı ºªØœﬁ÷∆∑˚◊÷µ‰
+//ÂàùÂßãÂåñÈôêÂà∂Á¨¶Â≠óÂÖ∏
 void initLimitMap()
 {
     limitMap["{"] = LEFT_BOUNDER;
@@ -46,7 +46,7 @@ void initLimitMap()
     limitMap[";"] = SEMICOLON;
 }
 
-//≥ı ºªØΩ·µ„
+//ÂàùÂßãÂåñÁªìÁÇπ
 void initNode()
 {
     normalHead = new NormalNode();
@@ -63,10 +63,10 @@ void initNode()
     errorHead->line = -1;
     errorHead->next = NULL;
 
-    cout << "≥ı ºªØµ•¥ Ω·µ„°¢¥ÌŒÛΩ·µ„ÕÍ±œ" << endl;
+    cout << "ÂàùÂßãÂåñÂçïËØçÁªìÁÇπ„ÄÅÈîôËØØÁªìÁÇπÂÆåÊØï" << endl;
 }
 
-//≤Â»Î“ª∏ˆΩ·µ„
+//ÊèíÂÖ•‰∏Ä‰∏™ÁªìÁÇπ
 void createNewNode(string content, string descirbe, int type, int line)
 {
     NormalNode *p = normalHead;
@@ -87,7 +87,7 @@ void createNewNode(string content, string descirbe, int type, int line)
     p->next = temp;
 }
 
-//≤Â»Î“ª∏ˆ¥ÌŒÛΩ·µ„
+//ÊèíÂÖ•‰∏Ä‰∏™ÈîôËØØÁªìÁÇπ
 void createNewError(string content, string descirbe, int type, int line)
 {
     ErrorNode *p = errorHead;
@@ -105,19 +105,19 @@ void createNewError(string content, string descirbe, int type, int line)
     p->next = temp;
 }
 
-// ‰≥ˆΩ·µ„–≈œ¢
+//ËæìÂá∫ÁªìÁÇπ‰ø°ÊÅØ
 void printNodeLink()
 {
-    cout << "*****************************∑÷Œˆ±Ì******************************" << endl
+    cout << "*****************************ÂàÜÊûêË°®******************************" << endl
          << endl;
-    cout << setw(15) << "ƒ⁄»›"
-         << setw(15) << "√Ë ˆ"
+    cout << setw(15) << "ÂÜÖÂÆπ"
+         << setw(15) << "ÊèèËø∞"
          << "\t"
-         << setw(3) << "÷÷±¬Î"
+         << setw(3) << "ÁßçÂà´Á†Å"
          << "\t"
-         << setw(8) << "±Í ∂∑˚¿‡–Õ"
+         << setw(8) << "Ê†áËØÜÁ¨¶Á±ªÂûã"
          << "\t"
-         << "––∫≈" << endl;
+         << "Ë°åÂè∑" << endl;
     NormalNode *p = normalHead;
     p = p->next;
     while (p)
@@ -133,26 +133,26 @@ void printNodeLink()
     cout << endl;
 }
 
-//µº≥ˆΩ·µ„–≈œ¢
+//ÂØºÂá∫ÁªìÁÇπ‰ø°ÊÅØ
 void outputNodeLink()
 {
     ofstream fout("words.txt");
     if (!fout)
     {
-        cout << "words.txt¥Úø™ ß∞‹!" << endl;
+        cout << "words.txtÊâìÂºÄÂ§±Ë¥•!" << endl;
         return;
     }
-    fout << "*****************************∑÷Œˆ±Ì******************************" << endl
+    fout << "*****************************ÂàÜÊûêË°®******************************" << endl
          << endl;
-    fout << "ƒ⁄»›"
+    fout << "ÂÜÖÂÆπ"
          << "\t"
-         << setw(10) << "√Ë ˆ"
+         << setw(10) << "ÊèèËø∞"
          << "\t"
-         << setw(3) << "÷÷±¬Î"
+         << setw(3) << "ÁßçÂà´Á†Å"
          << "\t"
-         << setw(8) << "±Í ∂∑˚¿‡–Õ"
+         << setw(8) << "Ê†áËØÜÁ¨¶Á±ªÂûã"
          << "\t"
-         << "––∫≈" << endl;
+         << "Ë°åÂè∑" << endl;
     NormalNode *p = normalHead;
     p = p->next;
     while (p)
@@ -167,20 +167,20 @@ void outputNodeLink()
     }
     fout << endl;
 
-    cout << "words.txt∏¸–¬ÕÍ≥…!" << endl;
+    cout << "words.txtÊõ¥Êñ∞ÂÆåÊàê!" << endl;
     fout.close();
 }
 
-// ‰≥ˆ¥ÌŒÛΩ·µ„–≈œ¢
+//ËæìÂá∫ÈîôËØØÁªìÁÇπ‰ø°ÊÅØ
 void printErrorLink()
 {
-    cout << "*****************************¥ÌŒÛ±Ì******************************" << endl
+    cout << "*****************************ÈîôËØØË°®******************************" << endl
          << endl;
-    cout << setw(15) << "ƒ⁄»›" << setw(15) << "√Ë ˆ"
+    cout << setw(15) << "ÂÜÖÂÆπ" << setw(15) << "ÊèèËø∞"
          << "\t"
-         << "¿‡–Õ"
+         << "Á±ªÂûã"
          << "\t"
-         << "––∫≈" << endl;
+         << "Ë°åÂè∑" << endl;
     ErrorNode *p = errorHead;
     p = p->next;
     while (p)
@@ -192,23 +192,23 @@ void printErrorLink()
          << endl;
 }
 
-//µ•¥ …®√Ë
+//ÂçïËØçÊâ´Êèè
 void scanner()
 {
     string filename;
     string word;
     int i;
-    int line = 1; //–– ˝
+    int line = 1; //Ë°åÊï∞
 
     fstream fin("test.txt", ios::in);
     if (!fin)
     {
-        cout << "¥Úø™Œƒº˛ ß∞‹£°" << endl;
+        cout << "ÊâìÂºÄÊñá‰ª∂Â§±Ë¥•ÔºÅ" << endl;
         return;
     }
     else
     {
-        cout << "¥Úø™Œƒº˛≥…π¶£°" << endl;
+        cout << "ÊâìÂºÄÊñá‰ª∂ÊàêÂäüÔºÅ" << endl;
     }
 
     char ch;
@@ -217,7 +217,7 @@ void scanner()
     {
         i = 0;
         word.clear();
-        //“‘◊÷ƒ∏ø™Õ∑, ¥¶¿Ìπÿº¸◊÷ªÚ’ﬂ±Í ∂∑˚
+        //‰ª•Â≠óÊØçÂºÄÂ§¥, Â§ÑÁêÜÂÖ≥ÈîÆÂ≠óÊàñËÄÖÊ†áËØÜÁ¨¶
         if ((ch >= 'A' && ch <= 'Z') || (ch >= 'a' && ch <= 'z'))
         {
             while ((ch >= 'A' && ch <= 'Z') || (ch >= 'a' && ch <= 'z') || (ch >= '0' && ch <= '9'))
@@ -226,13 +226,13 @@ void scanner()
                 fin.get(ch);
             }
 
-            //»Áπ˚ «±£¡Ù◊÷
+            //Â¶ÇÊûúÊòØ‰øùÁïôÂ≠ó
             map<string, int>::iterator it = keyMap.find(word);
             if (it != keyMap.end())
             {
                 createNewNode(word, KEY_DESC, it->second, line);
             }
-            //»Áπ˚ «±Í ∂∑˚
+            //Â¶ÇÊûúÊòØÊ†áËØÜÁ¨¶
             else
             {
                 // int addr_tmp = createNewIden(word, IDENTIFIER_DESC, IDENTIFIER, -1, line);
@@ -240,7 +240,7 @@ void scanner()
             }
             fin.seekg(-1, ios::cur);
         }
-        //“‘ ˝◊÷ø™Õ∑
+        //‰ª•Êï∞Â≠óÂºÄÂ§¥
         else if (ch >= '0' && ch <= '9')
         {
             while (ch >= '0' && ch <= '9')
@@ -367,7 +367,7 @@ void scanner()
     fin.close();
 }
 
-//ªÿ ’Ω·µ„¡¥”Î¥ÌŒÛ¡¥
+//ÂõûÊî∂ÁªìÁÇπÈìæ‰∏éÈîôËØØÈìæ
 void clear()
 {
     while (normalHead)

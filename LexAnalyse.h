@@ -4,19 +4,19 @@
 
 using namespace std;
 
-// ±£Áô×Ö
+// ä¿ç•™å­—
 #define MAIN 0   // main
 #define INT 1    // int
 #define RETURN 2 // return
 #define IF 3     // if
 #define ELSE 4   // else
-#define KEY_DESC "±£Áô×Ö"
+#define KEY_DESC "ä¿ç•™å­—"
 
-// ±êÊ¶·û
+// æ ‡è¯†ç¬¦
 #define IDENTIFIER 5
-#define IDENTIFIER_DESC "±êÊ¶·û"
+#define IDENTIFIER_DESC "æ ‡è¯†ç¬¦"
 
-// ÔËËã·û
+// è¿ç®—ç¬¦
 #define ADD 6         // +
 #define SUB 7         // -
 #define MUL 8         // *
@@ -28,37 +28,37 @@ using namespace std;
 #define GRT_EQUAL 14  // >=
 #define NOT_EQUAL 15  // !=
 #define ASSIGN 16     // =
-#define OPE_DESC "ÔËËã·û"
+#define OPE_DESC "è¿ç®—ç¬¦"
 
-// ÏŞ½ç·û
+// é™ç•Œç¬¦
 #define LEFT_BRACKET 17  // (
 #define RIGHT_BRACKET 18 // )
 #define LEFT_BOUNDER 19  // {
 #define RIGHT_BOUNDER 20 // }
 #define SEMICOLON 21     // ;
 #define DOLLAR 22        // $
-#define CLE_OPE_DESC "ÏŞ½ç·û"
+#define CLE_OPE_DESC "é™ç•Œç¬¦"
 
-// ³£Á¿
-#define CONSTANT 23 // ÎŞÕı¸ººÅÕûĞÎ³£Á¿
-#define CONSTANT_DESC "³£Êı"
+// å¸¸é‡
+#define CONSTANT 23 // æ— æ­£è´Ÿå·æ•´å½¢å¸¸é‡
+#define CONSTANT_DESC "å¸¸æ•°"
 
-// ´íÎóÀàĞÍ
-#define INT_ERROR "²»ÊÇ³£Êı"
+// é”™è¯¯ç±»å‹
+#define INT_ERROR "ä¸æ˜¯å¸¸æ•°"
 #define INT_ERROR_NUM 1
-#define EXCLAMATION_ERROR "!·ûºÅ²»ºÏ·¨"
+#define EXCLAMATION_ERROR "!ç¬¦å·ä¸åˆæ³•"
 #define EXCLAMATION_ERROR_NUM 2
-#define SYMBOL_ERROR "·ûºÅ²»ºÏ·¨"
+#define SYMBOL_ERROR "ç¬¦å·ä¸åˆæ³•"
 #define SYMBOL_ERROR_NUM 3
-#define LEFT_BRACKET_ERROR "'('Ã»ÓĞ¶ÔÓ¦Ïî"
+#define LEFT_BRACKET_ERROR "'('æ²¡æœ‰å¯¹åº”é¡¹"
 #define LEFT_BRACKET_ERROR_NUM 4
-#define RIGHT_BRACKET_ERROR "')'Ã»ÓĞ¶ÔÓ¦Ïî"
+#define RIGHT_BRACKET_ERROR "')'æ²¡æœ‰å¯¹åº”é¡¹"
 #define RIGHT_BRACKET_ERROR_NUM 5
-#define LEFT_BOUNDER_ERROR "'{'Ã»ÓĞ¶ÔÓ¦Ïî"
+#define LEFT_BOUNDER_ERROR "'{'æ²¡æœ‰å¯¹åº”é¡¹"
 #define LEFT_BOUNDER_ERROR_NUM 6
-#define RIGHT_BOUNDER_ERROR "'}'Ã»ÓĞ¶ÔÓ¦Ïî"
+#define RIGHT_BOUNDER_ERROR "'}'æ²¡æœ‰å¯¹åº”é¡¹"
 #define RIGHT_BOUNDER_ERROR_NUM 7
-#define END_ERROR "Î´ÒÔ$½áÎ²"
+#define END_ERROR "æœªä»¥$ç»“å°¾"
 #define END_ERROR_NUM 8
 
 #define _NULL "null"
@@ -67,35 +67,35 @@ map<string, int> keyMap;
 map<string, int> operMap;
 map<string, int> limitMap;
 
-//±£Áô×Ö | ±êÊ¶·û | ÔËËã·û | ³£Êı
+//ä¿ç•™å­— | æ ‡è¯†ç¬¦ | è¿ç®—ç¬¦ | å¸¸æ•°
 struct NormalNode
 {
-    string content;   //ÄÚÈİ
-    string describe;  //ÃèÊöÊÇ±£Áô×Ö»¹ÊÇ±êÊ¶·û
-    int type;         //ÖÖ±ğÂë
-    string iden_type; //±êÊ¶·ûÀàĞÍ
-    int line;         //ËùÔÚĞĞÊı
-    NormalNode *next; //ÏÂÒ»¸ö½áµã
-} * normalHead;       //Ê×½áµã
+    string content;   //å†…å®¹
+    string describe;  //æè¿°æ˜¯ä¿ç•™å­—è¿˜æ˜¯æ ‡è¯†ç¬¦
+    int type;         //ç§åˆ«ç 
+    string iden_type; //æ ‡è¯†ç¬¦ç±»å‹
+    int line;         //æ‰€åœ¨è¡Œæ•°
+    NormalNode *next; //ä¸‹ä¸€ä¸ªç»“ç‚¹
+} * normalHead;       //é¦–ç»“ç‚¹
 
-//´íÎó½áµã
+//é”™è¯¯ç»“ç‚¹
 struct ErrorNode
 {
-    string content;  //´íÎóÄÚÈİ
-    string describe; //´íÎóÃèÊö
+    string content;  //é”™è¯¯å†…å®¹
+    string describe; //é”™è¯¯æè¿°
     int type;
-    int line;        //ËùÔÚĞĞÊı
-    ErrorNode *next; //ÏÂÒ»¸ö½áµã
-} * errorHead;       //Ê×½áµã
+    int line;        //æ‰€åœ¨è¡Œæ•°
+    ErrorNode *next; //ä¸‹ä¸€ä¸ªç»“ç‚¹
+} * errorHead;       //é¦–ç»“ç‚¹
 
-void initKeyMap();                                                                 //³õÊ¼»¯±£Áô×Ö×Öµä
-void initOperMap();                                                                //³õÊ¼»¯ÔËËã·û×Öµä
-void initLimitMap();                                                               //³õÊ¼»¯ÏŞÖÆ·û×Öµä
-void initNode();                                                                   //³õÊ¼»¯½áµã
-void createNewNode(string content, string descirbe, int type, int addr, int line); //²åÈëÒ»¸ö½áµã
-void createNewError(string content, string descirbe, int type, int line);          //²åÈëÒ»¸ö´íÎó½áµã
-void scanner();                                                                    //µ¥´ÊÉ¨Ãè
-void printNodeLink();                                                              //Êä³ö½áµãĞÅÏ¢
-void outputNodeLink();                                                             //µ¼³ö½áµãĞÅÏ¢
-void printErrorLink();                                                             //Êä³ö´íÎó½áµãĞÅÏ¢
-void clear();                                                                      //»ØÊÕ½áµãÁ´Óë´íÎóÁ´
+void initKeyMap();                                                                 //åˆå§‹åŒ–ä¿ç•™å­—å­—å…¸
+void initOperMap();                                                                //åˆå§‹åŒ–è¿ç®—ç¬¦å­—å…¸
+void initLimitMap();                                                               //åˆå§‹åŒ–é™åˆ¶ç¬¦å­—å…¸
+void initNode();                                                                   //åˆå§‹åŒ–ç»“ç‚¹
+void createNewNode(string content, string descirbe, int type, int addr, int line); //æ’å…¥ä¸€ä¸ªç»“ç‚¹
+void createNewError(string content, string descirbe, int type, int line);          //æ’å…¥ä¸€ä¸ªé”™è¯¯ç»“ç‚¹
+void scanner();                                                                    //å•è¯æ‰«æ
+void printNodeLink();                                                              //è¾“å‡ºç»“ç‚¹ä¿¡æ¯
+void outputNodeLink();                                                             //å¯¼å‡ºç»“ç‚¹ä¿¡æ¯
+void printErrorLink();                                                             //è¾“å‡ºé”™è¯¯ç»“ç‚¹ä¿¡æ¯
+void clear();                                                                      //å›æ”¶ç»“ç‚¹é“¾ä¸é”™è¯¯é“¾
